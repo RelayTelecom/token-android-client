@@ -41,6 +41,13 @@ public class WebViewActivity extends BasePresenterActivity<WebViewPresenter, Web
 
     private void init() {
         this.binding = DataBindingUtil.setContentView(this, R.layout.activity_web_view);
+        WebView webview = (WebView) findViewById(R.id.webview);
+        webview.setWebChromeClient(new WebChromeClient(){
+            @Override
+            public void onPermissionRequest(final PermissionRequest request) {
+                request.grant(request.getResources());
+            }
+        });
     }
 
     public final ActivityWebViewBinding getBinding() {
